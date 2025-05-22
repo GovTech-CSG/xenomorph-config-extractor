@@ -2,7 +2,7 @@
 
 Decryption codes and static configuration extractor for Xenomorph APK malware.
 
-## Project Structure
+## 🎄 Project Structure
 ```txt
 .
 ├── article_scripts
@@ -31,8 +31,8 @@ Decryption codes and static configuration extractor for Xenomorph APK malware.
 └── README.md
 ```
 
-### About article_scripts
-Decrypt strings and 2nd stage encrypted payload found in a highly obfuscated Xenomorph malware sample (SHA256: 259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b).
+### 📜 About article_scripts
+Decrypt strings and 2nd stage encrypted payload found in a highly obfuscated Xenomorph malware sample (SHA256: ```259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b```).
 
 This sample was encrypted in a different manner from the other Xenomorph samples I analysed, thus requiring special scripts just for its deobfuscation and decryption.
 <br>
@@ -41,16 +41,16 @@ These scripts are used in the deep dive analysis into this sample on Medium: [De
 <br>
 ![diag-xeno-analysis.png](assets/diag-xeno-analysis.png)
 
-### About config_extractor
+### 📜 About config_extractor
 Extracts Xenomorph malware configuration. 
 
 The main.py script goes through a series of conditions to run various codes to determine whether the sample belongs to the Xenomorph malware family, and eventually extract the malware configuration.
 <br>
 ![diag-xeno-config-extractor.png](assets/diag-xeno-config-extractor.png)
 
-Here's an example from a sample (SHA256: 2877b27f1b6c7db466351618dda4f05d6a15e9a26028f3fc064fa144ec3a1850).
+Here's an example from a sample (SHA256: ```2877b27f1b6c7db466351618dda4f05d6a15e9a26028f3fc064fa144ec3a1850```).
 You may also view the sample output.json file at [example-output.json](example/example-output.json).
-```console
+```text
 > python main.py ../../xenosamples/2877b27f1b6c7db466351618dda4f05d6a15e9a26028f3fc064fa144ec3a1850
    _  __ ____ _  __ ____   __  ___ ____   ___   ___   __ __  _____ ____   _  __ ____ ____ _____
   | |/_// __// |/ // __ \ /  |/  // __ \ / _ \ / _ \ / // / / ___// __ \ / |/ // __//  _// ___/
@@ -81,7 +81,11 @@ The code makes use of the Karton framework from CERT-Polska to pass Tasks from s
 - [GitHub - CERT-Polska/Karton](https://github.com/CERT-Polska/karton)
 - [Karton documentation](https://karton-core.readthedocs.io/en/latest/index.html)
 
-### Test samples
+The code also makes use of the script by Cryptax to unpack JsonPacker-packed files.
+- [GitHub - cryptax/misc-code/jsonpacker/jsondecrypt.py](https://github.com/cryptax/misc-code/blob/1dbc90c901a205d494a9b71093ecf5a4f18d716b/jsonpacker/jsondecrypt.py)
+- [Unpacking a JsonPacker-packed sample | by @cryptax | Medium](https://cryptax.medium.com/unpacking-a-jsonpacker-packed-sample-4038e12119f5)
+
+### 👾 Test samples
 These are the Xenomorph samples which were available at the time of analysis and thus were tested on using the respective scripts.
 <br>
 Do note that they could also work on other Xenomorph samples with the same decryption method.
@@ -90,7 +94,7 @@ Do note that they could also work on other Xenomorph samples with the same decry
 | article_scripts   | Decrypt strings and 2nd stage encrypted payload found in a highly obfuscated Xenomorph malware sample. | <ul><li>259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b</li></ul> | 
 | config_extractor   | Extracts Xenomorph malware configuration. | <ul><li>2877b27f1b6c7db466351618dda4f05d6a15e9a26028f3fc064fa144ec3a1850</li><li>9ce2ad40f3998860ca1ab21d97ea7346bf9d26ff867fc69c4d005c477c67a899</li><li>6af8683c314fd060631e4789b7a793e73d209d87918f3112e8903a090940237d</li><li>dcb88fb46c8d030c6f92dff0cd5e4c2f5bdf223070f2596c86a454f1adf00729</li></ul> |
 
-## Usage
+## 🔧 Usage
 For reference, I used a virtual machine with Kali Linux 2024.2 release and the following versions:
 - Python 3.12.6
 - OpenJDK 23
@@ -111,14 +115,14 @@ pip install -r /path/to/requirements.txt
 
 ### article_scripts
 #### decode_cetdg_strings.py
-> Decode strings in class ecd.retbpse.slefdiurp.ffgh.cetdg from sample SHA256:259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b. 
+> Decodes strings in class ecd.retbpse.slefdiurp.ffgh.cetdg from sample SHA256: ```259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b```. 
 >
 > Usage:
 > ```console
 > python decode_cetdg_strings.py
 > ```
 #### DecryptRumStrings.java
-> Decrypt strings related to command "execute_rum" in 2nd stage dex payload from sample SHA256:259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b.
+> Decrypts strings related to command "execute_rum" in 2nd stage dex payload from sample SHA256: ```259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b```.
 >
 > Usage: 
 > ```console
@@ -126,7 +130,7 @@ pip install -r /path/to/requirements.txt
 > java DecryptRumStrings
 > ```
 #### DecryptTelegramC2.java
-> Decrypt encrypted C2 found in Telegram bio, in 2nd stage dex payload from sample SHA256:259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b.
+> Decrypts encrypted C2 found in Telegram bio, in 2nd stage dex payload from sample SHA256: ```259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b```.
 >
 > Usage:
 > ```console
@@ -134,8 +138,8 @@ pip install -r /path/to/requirements.txt
 > java DecryptTelegramC2
 > ```
 #### DecryptXenoDexPayload.java
-> Decrypt encrypted dex payload in sample SHA256:259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b.
-> Found in resources/assets/sqvgk/lkfupve.gvo.
+> Decrypts encrypted dex payload in sample SHA256: ```259e88f593a3df5cf14924eec084d904877953c4a78ed4a2bc9660a2eaabb20b```.
+> Encrypted dex payload found in resources/assets/sqvgk/lkfupve.gvo.
 >
 > Usage:
 > ```console
@@ -146,9 +150,17 @@ pip install -r /path/to/requirements.txt
 > The input file should be the encrypted dex file.
 ### config_extractor
 #### main.py
-> This script decompiles APK/DEX files, detects and unpacks files packed by JSON-Packer, and extracts Xenomorph configuration.
+> This script decompiles APK/DEX files, detects and unpacks files packed by JSON-Packer. It goes through a series of conditions to run various codes to determine whether the sample belongs to the Xenomorph malware family, and eventually extract the Xenomorph malware configuration.
 >
 > Usage: 
 > ```console
 > python main.py <file path>
 > ```
+
+## ✏️ Author
+
+**cano32**
+- :octocat: [GitHub](https://github.com/cano32)
+ 
+## 📃 License
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
